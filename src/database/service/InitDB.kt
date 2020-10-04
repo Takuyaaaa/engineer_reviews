@@ -4,8 +4,8 @@ import org.jetbrains.exposed.sql.Database
 
 fun InitDB() {
     Database.connect(
-    "jdbc:mysql//localhost/engineer_reviews",
-  "com.myswl.jdbc.driver",
+        url = "jdbc:mariadb://localhost:3306/engineer_reviews",
+        driver = "org.mariadb.jdbc.Driver",
         user = "user",
         password = "password"
     )

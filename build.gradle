@@ -11,7 +11,7 @@ buildscript {
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
-group 'com.Takuyaaaa/engineer_reviews'
+group 'com.engineer_reviews'
 version '0.0.1'
 mainClassName = "io.ktor.server.netty.EngineMain"
 

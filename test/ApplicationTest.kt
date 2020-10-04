@@ -1,4 +1,4 @@
-package com.Takuyaaaa/engineer_reviews
+package com.engineer_reviews
 
 import io.ktor.application.*
 import io.ktor.response.*
