@@ -3,6 +3,7 @@ package com.engineer_reviews
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
 import com.engineer_reviews.models.book.Book
+import com.engineer_reviews.models.book.BookJson
 import io.ktor.application.*
 import io.ktor.response.*
 import io.ktor.request.*
@@ -13,6 +14,7 @@ import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
+import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 import javax.xml.validation.Schema
@@ -43,6 +45,7 @@ fun Application.module(testing: Boolean = false) {
 
     // create Books Table
     transaction {
+        drop(Books)
         SchemaUtils.create(Books)
 
         Books.insert {
@@ -51,6 +54,14 @@ fun Application.module(testing: Boolean = false) {
             it[category] = 1
             it[reviewScore] = 5
             it[bookUrl] = "https://this/is/sample"
+        }
+
+        Books.insert {
+            it[title] = "Test Title2"
+            it[price] = 3000
+            it[category] = 2
+            it[reviewScore] = 10
+            it[bookUrl] = "https://this/is/sample/2"
         }
     }
 
@@ -64,7 +75,8 @@ fun Application.module(testing: Boolean = false) {
             transaction {
                 allBooks = Book.all().toList()
             }
-            call.respond(mapOf("books" to allBooks.map { it }))
+
+            call.respond(allBooks.map { BookJson(it.title, it.price, it.category, it.reviewScore, it.bookUrl) })
         }
 
         get("/json/jackson") {
