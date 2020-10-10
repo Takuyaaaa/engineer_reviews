@@ -47,6 +47,7 @@ fun Application.module(testing: Boolean = false) {
 
         Books.insert {
             it[title] = "Test Title"
+            it[price] = 2000
             it[category] = 1
             it[reviewScore] = 5
             it[bookUrl] = "https://this/is/sample"
