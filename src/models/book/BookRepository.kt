@@ -17,12 +17,14 @@ class BookRepository {
         }
 
         fun save(book: Book) {
-            Books.insert {
-                it[title] = book.title
-                it[price] = book.price
-                it[category] = book.category
-                it[reviewScore] = book.reviewScore
-                it[url] = book.url
+            transaction {
+                Books.insert {
+                    it[title] = book.title
+                    it[price] = book.price
+                    it[category] = book.category
+                    it[reviewScore] = book.reviewScore
+                    it[url] = book.url
+                }
             }
         }
 

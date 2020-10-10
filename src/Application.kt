@@ -12,9 +12,9 @@ import io.ktor.routing.*
 import io.ktor.http.*
 import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
+import io.ktor.request.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SchemaUtils.drop
-import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
@@ -51,8 +51,15 @@ fun Application.module(testing: Boolean = false) {
     }
 
     routing {
-        get("/books") {
-            call.respond(BookRepository.getAll().map { it.toEntity() })
+        route("/book") {
+            get {
+                call.respond(BookRepository.getAll().map { it.toEntity() })
+            }
+            post {
+                val book = call.receive<Book>()
+                BookRepository.save(book)
+                call.respond(book)
+            }
         }
     }
 }
