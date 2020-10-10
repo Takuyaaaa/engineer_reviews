@@ -3,7 +3,6 @@ package com.engineer_reviews
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
 import com.engineer_reviews.models.book.Book
-import com.engineer_reviews.models.book.BookEloquent
 import com.engineer_reviews.models.book.BookRepository
 import io.ktor.application.*
 import io.ktor.response.*
@@ -16,6 +15,7 @@ import io.ktor.request.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.lang.Exception
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -56,9 +56,18 @@ fun Application.module(testing: Boolean = false) {
                 call.respond(BookRepository.getAll().map { it.toEntity() })
             }
             post {
-                val book = call.receive<Book>()
-                BookRepository.save(book)
-                call.respond(book)
+                val newBook = call.receive<Book>()
+                BookRepository.save(newBook)
+                call.respond(newBook)
+            }
+            route("{id}") {
+                put {
+                    val newBook = call.receive<Book>()
+                    val id = call.parameters["id"]?.toInt()
+                    val targetBook = BookRepository.find(id)?.toEntity() ?: throw Exception("404")
+                    val updatedBook = BookRepository.update(targetBook, newBook)
+                    call.respond(updatedBook)
+                }
             }
         }
     }

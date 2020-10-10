@@ -28,6 +28,22 @@ class BookRepository {
             }
         }
 
+        fun update(targetBook: Book, newInfo: Book): Book {
+            targetBook.title = newInfo.title
+            targetBook.price = newInfo.price
+            targetBook.category = newInfo.category
+            targetBook.reviewScore = newInfo.reviewScore
+            targetBook.url = newInfo.url
+            // saveだと追加されちゃう
+            save(targetBook)
+            return targetBook
+        }
+
+        fun find(id: Int?): BookEloquent? {
+            return id?.let { transaction {
+                BookEloquent.findById(it)
+            }}
+        }
     }
 
 }
