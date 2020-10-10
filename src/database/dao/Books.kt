@@ -8,5 +8,5 @@ object Books: IntIdTable("books") {
     var price = integer("price")
     var category = integer("category")
     var reviewScore = integer("review_score")
-    var bookUrl = varchar("book_url", 255)
+    var url = varchar("url", 255)
 }
