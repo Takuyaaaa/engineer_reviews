@@ -6,7 +6,7 @@ fun InitDB() {
     Database.connect(
         url = "jdbc:mariadb://localhost:3306/engineer_reviews",
         driver = "org.mariadb.jdbc.Driver",
-        user = "user",
+        user = "root",
         password = "password"
     )
 }
