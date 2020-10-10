@@ -7,6 +7,7 @@ import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
 
+// こっちはeloquentのうようなものと考える
 class Book(id: EntityID<Int>): IntEntity(id) {
     companion object: IntEntityClass<Book>(Books)
 
@@ -17,9 +18,10 @@ class Book(id: EntityID<Int>): IntEntity(id) {
     var bookUrl by Books.bookUrl
 }
 
-data class BookJson(
+// こっちをentityのようにする、eloquentからtoEntityでこちらに、振る舞いもこちらに持たせる
+class BookJson(
     val title: String,
     val price: Int,
     val category: Int,
     val reviewScore: Int,
-    val bookUrl: String)
+    val bookUrl: String) {}
