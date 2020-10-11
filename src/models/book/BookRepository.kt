@@ -1,8 +1,8 @@
 package com.engineer_reviews.models.book
 
 import com.engineer_reviews.database.dao.Books
-import org.jetbrains.exposed.sql.insert
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.lang.Exception
 
 class BookRepository {
 
@@ -18,30 +18,33 @@ class BookRepository {
 
         fun save(book: Book) {
             transaction {
-                Books.insert {
-                    it[title] = book.title
-                    it[price] = book.price
-                    it[category] = book.category
-                    it[reviewScore] = book.reviewScore
-                    it[url] = book.url
+                BookEloquent.new {
+                    title = book.title
+                    price = book.price
+                    category = book.category
+                    reviewScore = book.reviewScore
+                    url = book.url
                 }
             }
         }
 
         fun update(targetBook: Book, newInfo: Book): Book {
-            targetBook.title = newInfo.title
-            targetBook.price = newInfo.price
-            targetBook.category = newInfo.category
-            targetBook.reviewScore = newInfo.reviewScore
-            targetBook.url = newInfo.url
-            // saveだと追加されちゃう
-            save(targetBook)
-            return targetBook
+            var updatedBook: Book = newInfo
+            transaction {
+                updatedBook = BookEloquent.find { Books.id eq targetBook.id}.single().apply {
+                    title = newInfo.title
+                    price = newInfo.price
+                    category = newInfo.category
+                    reviewScore = newInfo.reviewScore
+                    url = newInfo.url
+                }.toEntity()
+            }
+            return updatedBook
         }
 
         fun find(id: Int?): BookEloquent? {
             return id?.let { transaction {
-                BookEloquent.findById(it)
+                BookEloquent.findById(id)
             }}
         }
     }
