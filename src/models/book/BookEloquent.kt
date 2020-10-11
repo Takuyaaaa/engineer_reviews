@@ -16,6 +16,6 @@ class BookEloquent(id: EntityID<Int>): IntEntity(id) {
 
     fun toEntity(): Book {
         return Book(this.title, this.price, this.category,
-                this.reviewScore, this.url)
+                this.reviewScore, this.url, this.id.value)
     }
 }
