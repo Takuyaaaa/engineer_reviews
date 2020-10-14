@@ -1,7 +1,9 @@
 package com.engineer_reviews.models.book
 
 import com.engineer_reviews.database.dao.Books
+import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.lang.Exception
 
 class BookRepository {
 
@@ -45,6 +47,13 @@ class BookRepository {
                 }.toEntity()
             }
             return updatedBook
+        }
+
+        fun delete(targetBook: Book): Book {
+            transaction {
+                Books.deleteWhere { Books.id eq targetBook.id }
+            }
+            return targetBook
         }
     }
 

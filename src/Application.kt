@@ -73,6 +73,12 @@ fun Application.module(testing: Boolean = false) {
                     val updatedBook = BookRepository.update(targetBook, newBook)
                     call.respond(updatedBook)
                 }
+                delete {
+                    val id = call.parameters["id"]?.toInt()
+                    val targetBook = BookRepository.find(id)?.toEntity() ?: throw Exception("404")
+                    val deletedBook = BookRepository.delete(targetBook)
+                    call.respond(deletedBook)
+                }
             }
         }
     }
