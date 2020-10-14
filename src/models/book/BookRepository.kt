@@ -2,7 +2,6 @@ package com.engineer_reviews.models.book
 
 import com.engineer_reviews.database.dao.Books
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.lang.Exception
 
 class BookRepository {
 
@@ -14,6 +13,12 @@ class BookRepository {
             }
 
             return allBooks
+        }
+
+        fun find(id: Int?): BookEloquent? {
+            return id?.let { transaction {
+                BookEloquent.findById(id)
+            }}
         }
 
         fun save(book: Book) {
@@ -40,12 +45,6 @@ class BookRepository {
                 }.toEntity()
             }
             return updatedBook
-        }
-
-        fun find(id: Int?): BookEloquent? {
-            return id?.let { transaction {
-                BookEloquent.findById(id)
-            }}
         }
     }
 

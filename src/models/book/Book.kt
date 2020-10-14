@@ -6,5 +6,4 @@ class Book(
         var category: Int,
         var reviewScore: Int,
         var url: String,
-        val id: Int? = null) {
-}
+        val id: Int? = null)

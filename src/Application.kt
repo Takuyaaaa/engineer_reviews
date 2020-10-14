@@ -61,6 +61,11 @@ fun Application.module(testing: Boolean = false) {
                 call.respond(newBook)
             }
             route("{id}") {
+                get {
+                    val id = call.parameters["id"]?.toInt()
+                    val targetBook = BookRepository.find(id)?.toEntity() ?: throw Exception("404")
+                    call.respond(targetBook)
+                }
                 put {
                     val newBook = call.receive<Book>()
                     val id = call.parameters["id"]?.toInt()
