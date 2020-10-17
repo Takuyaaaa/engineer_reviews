@@ -19,9 +19,11 @@ class BookRepository {
             return allBooks
         }
 
-        fun find(id: Int): Book {
+        fun find(id: Int?): Book? {
             return transaction {
-                BookEloquent.findById(id)?.toEntity() ?: throw Exception("404")
+                id?.let {
+                    BookEloquent.findById(it)?.toEntity() ?: throw Exception("404")
+                }
             }
         }
 
@@ -39,11 +41,11 @@ class BookRepository {
             return createdBook
         }
 
-        fun update(id: Int, newBook: Book): Book {
+        fun update(id: Int?, newBook: Book): Book {
             val targetBook = find(id)
             lateinit var updatedBook: Book
             transaction {
-                updatedBook = BookEloquent.find { Books.id eq targetBook.id}.single().apply {
+                updatedBook = BookEloquent.find { Books.id eq targetBook?.id}.single().apply {
                     title = newBook.title
                     price = newBook.price
                     category = newBook.category
@@ -54,10 +56,10 @@ class BookRepository {
             return updatedBook
         }
 
-        fun delete(id: Int): Book {
+        fun delete(id: Int?): Book? {
             val targetBook = find(id)
             transaction {
-                Books.deleteWhere { Books.id eq targetBook.id }
+                Books.deleteWhere { Books.id eq targetBook?.id }
             }
             return targetBook
         }

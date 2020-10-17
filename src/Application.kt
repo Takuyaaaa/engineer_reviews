@@ -63,14 +63,14 @@ fun Application.module(testing: Boolean = false) {
             }
             route("{id}") {
                 get{
-                    call.respond(bookController.show(ControllerUtils.extractId(call)))
+                    bookController.show(ControllerUtils.extractId(call))?.let { it1 -> call.respond(it1) }
 
                 }
                 put {
                     call.respond(bookController.update(ControllerUtils.extractId(call), call.receive()))
                 }
                 delete {
-                    call.respond(bookController.delete(ControllerUtils.extractId(call)))
+                    bookController.delete(ControllerUtils.extractId(call))?.let { it1 -> call.respond(it1) }
 
                 }
             }

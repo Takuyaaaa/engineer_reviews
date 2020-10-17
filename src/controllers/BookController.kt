@@ -13,7 +13,7 @@ class BookController {
         return BookRepository.save(newBook)
     }
 
-    fun show(id: Int): Book {
+    fun show(id: Int): Book? {
         return BookRepository.find(id)
     }
 
@@ -21,7 +21,7 @@ class BookController {
         return BookRepository.update(id, book)
     }
 
-    fun delete(id: Int): Book {
+    fun delete(id: Int): Book? {
         return BookRepository.delete(id)
     }
 }
