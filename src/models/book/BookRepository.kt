@@ -1,8 +1,10 @@
 package com.engineer_reviews.models.book
 
 import com.engineer_reviews.database.dao.Books
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.transactions.transaction
+import org.jetbrains.exposed.sql.update
 import java.lang.Exception
 
 class BookRepository {
@@ -17,10 +19,10 @@ class BookRepository {
             return allBooks
         }
 
-        fun find(id: Int?): BookEloquent? {
-            return id?.let { transaction {
-                BookEloquent.findById(id)
-            }}
+        fun find(id: Int): Book {
+            return transaction {
+                BookEloquent.findById(id)?.toEntity() ?: throw Exception("404")
+            }
         }
 
         fun save(book: Book) {

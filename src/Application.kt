@@ -15,7 +15,6 @@ import io.ktor.request.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.transactions.transaction
-import java.lang.Exception
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -62,22 +61,26 @@ fun Application.module(testing: Boolean = false) {
             }
             route("{id}") {
                 get {
-                    val id = call.parameters["id"]?.toInt()
-                    val targetBook = BookRepository.find(id)?.toEntity() ?: throw Exception("404")
-                    call.respond(targetBook)
+                    call.parameters["id"]?.toInt()?.let {
+                        val targetBook = BookRepository.find(it)
+                        call.respond(targetBook)
+                    }
+
                 }
                 put {
                     val newBook = call.receive<Book>()
-                    val id = call.parameters["id"]?.toInt()
-                    val targetBook = BookRepository.find(id)?.toEntity() ?: throw Exception("404")
-                    val updatedBook = BookRepository.update(targetBook, newBook)
-                    call.respond(updatedBook)
+                    call.parameters["id"]?.toInt()?.let {
+                        val targetBook = BookRepository.find(it)
+                        val updatedBook = BookRepository.update(targetBook, newBook)
+                        call.respond(updatedBook)
+                    }
                 }
                 delete {
-                    val id = call.parameters["id"]?.toInt()
-                    val targetBook = BookRepository.find(id)?.toEntity() ?: throw Exception("404")
-                    val deletedBook = BookRepository.delete(targetBook)
-                    call.respond(deletedBook)
+                    call.parameters["id"]?.toInt()?.let {
+                        val targetBook = BookRepository.find(it)
+                        val deletedBook = BookRepository.delete(targetBook)
+                        call.respond(deletedBook)
+                    }
                 }
             }
         }
