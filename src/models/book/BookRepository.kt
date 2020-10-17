@@ -25,16 +25,18 @@ class BookRepository {
             }
         }
 
-        fun save(book: Book) {
+        fun save(book: Book): Book {
+            lateinit var createdBook: Book
             transaction {
-                BookEloquent.new {
+                createdBook = BookEloquent.new {
                     title = book.title
                     price = book.price
                     category = book.category
                     reviewScore = book.reviewScore
                     url = book.url
-                }
+                }.toEntity()
             }
+            return createdBook
         }
 
         fun update(id: Int, newBook: Book): Book {

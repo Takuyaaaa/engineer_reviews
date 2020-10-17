@@ -47,8 +47,8 @@ fun Application.module(testing: Boolean = false) {
         drop(Books)
         SchemaUtils.create(Books)
 
-        BookRepository.save(Book("Test Title", 2000, 1, 5, "https://this/is/sample"))
-        BookRepository.save(Book("Test Title2", 3000, 2, 8, "https://this/is/sample/2"))
+        BookRepository.save(Book("Test Title", 2000, 1, 5.5, "https://this/is/sample"))
+        BookRepository.save(Book("Test Title2", 3000, 2, 8.5, "https://this/is/sample/2"))
     }
 
     routing {

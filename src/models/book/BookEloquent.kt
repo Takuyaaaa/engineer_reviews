@@ -8,14 +8,18 @@ import org.jetbrains.exposed.dao.IntEntityClass
 class BookEloquent(id: EntityID<Int>): IntEntity(id) {
     companion object: IntEntityClass<BookEloquent>(Books)
 
-    var title by Books.title
-    var price by Books.price
-    var category by Books.category
-    var reviewScore by Books.reviewScore
-    var url by Books.url
+    var title: String by Books.title
+    var price: Int by Books.price
+    var category: Int by Books.category
+    var reviewScore: Double by Books.reviewScore
+    var url: String by Books.url
 
     fun toEntity(): Book {
-        return Book(this.title, this.price, this.category,
-                this.reviewScore, this.url, this.id.value)
+        val book = Book(this.title, this.price, this.category,
+                this.reviewScore, this.url)
+
+
+        book.id = this.id.value
+        return book
     }
 }

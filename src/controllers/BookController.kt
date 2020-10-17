@@ -10,8 +10,7 @@ class BookController {
     }
 
     fun create(newBook: Book): Book {
-        BookRepository.save(newBook)
-        return newBook
+        return BookRepository.save(newBook)
     }
 
     fun show(id: Int): Book {
