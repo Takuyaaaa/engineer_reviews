@@ -1,5 +1,6 @@
 package com.engineer_reviews
 
+import com.engineer_reviews.controllers.BookController
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
 import com.engineer_reviews.models.book.Book
@@ -15,6 +16,7 @@ import io.ktor.request.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.transactions.transaction
+import kotlin.properties.Delegates
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -50,39 +52,38 @@ fun Application.module(testing: Boolean = false) {
     }
 
     routing {
+        val bookController = BookController()
+
         route("/book") {
             get {
-                call.respond(BookRepository.getAll().map { it.toEntity() })
+                call.respond(bookController.index())
             }
             post {
-                val newBook = call.receive<Book>()
-                BookRepository.save(newBook)
-                call.respond(newBook)
+                call.respond(bookController.create(call.receive()))
             }
             route("{id}") {
-                get {
-                    call.parameters["id"]?.toInt()?.let {
-                        val targetBook = BookRepository.find(it)
-                        call.respond(targetBook)
-                    }
+                get{
+                    call.respond(bookController.show(ControllerUtils.extractId(call)))
 
                 }
                 put {
-                    val newBook = call.receive<Book>()
-                    call.parameters["id"]?.toInt()?.let {
-                        val targetBook = BookRepository.find(it)
-                        val updatedBook = BookRepository.update(targetBook, newBook)
-                        call.respond(updatedBook)
-                    }
+                    call.respond(bookController.update(ControllerUtils.extractId(call), call.receive()))
                 }
                 delete {
-                    call.parameters["id"]?.toInt()?.let {
-                        val targetBook = BookRepository.find(it)
-                        val deletedBook = BookRepository.delete(targetBook)
-                        call.respond(deletedBook)
-                    }
+                    call.respond(bookController.delete(ControllerUtils.extractId(call)))
+
                 }
             }
+        }
+    }
+}
+
+class ControllerUtils {
+    companion object {
+        fun extractId(call: ApplicationCall): Int {
+            var id by Delegates.notNull<Int>()
+            call.parameters["id"]?.toInt()?.let { id = it }
+            return id
         }
     }
 }

@@ -37,21 +37,23 @@ class BookRepository {
             }
         }
 
-        fun update(targetBook: Book, newInfo: Book): Book {
-            var updatedBook: Book = newInfo
+        fun update(id: Int, newBook: Book): Book {
+            val targetBook = find(id)
+            lateinit var updatedBook: Book
             transaction {
                 updatedBook = BookEloquent.find { Books.id eq targetBook.id}.single().apply {
-                    title = newInfo.title
-                    price = newInfo.price
-                    category = newInfo.category
-                    reviewScore = newInfo.reviewScore
-                    url = newInfo.url
+                    title = newBook.title
+                    price = newBook.price
+                    category = newBook.category
+                    reviewScore = newBook.reviewScore
+                    url = newBook.url
                 }.toEntity()
             }
             return updatedBook
         }
 
-        fun delete(targetBook: Book): Book {
+        fun delete(id: Int): Book {
+            val targetBook = find(id)
             transaction {
                 Books.deleteWhere { Books.id eq targetBook.id }
             }
