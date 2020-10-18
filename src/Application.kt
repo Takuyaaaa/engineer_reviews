@@ -5,14 +5,15 @@ import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
 import com.engineer_reviews.models.book.Book
 import com.engineer_reviews.models.book.BookRepository
+import com.engineer_reviews.route.roots
+import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.application.*
-import io.ktor.response.*
 import io.ktor.features.*
-import io.ktor.routing.*
 import io.ktor.http.*
-import com.fasterxml.jackson.databind.*
 import io.ktor.jackson.*
 import io.ktor.request.*
+import io.ktor.response.*
+import io.ktor.routing.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -52,39 +53,6 @@ fun Application.module(testing: Boolean = false) {
     }
 
     routing {
-        val bookController = BookController()
-
-        route("/book") {
-            get {
-                call.respond(bookController.index())
-            }
-            post {
-                call.respond(bookController.create(call.receive()))
-            }
-            route("{id}") {
-                get{
-                    bookController.show(ControllerUtils.extractId(call))?.let { it1 -> call.respond(it1) }
-
-                }
-                put {
-                    call.respond(bookController.update(ControllerUtils.extractId(call), call.receive()))
-                }
-                delete {
-                    bookController.delete(ControllerUtils.extractId(call))?.let { it1 -> call.respond(it1) }
-
-                }
-            }
-        }
+        roots()
     }
 }
-
-class ControllerUtils {
-    companion object {
-        fun extractId(call: ApplicationCall): Int {
-            var id by Delegates.notNull<Int>()
-            call.parameters["id"]?.toInt()?.let { id = it }
-            return id
-        }
-    }
-}
-

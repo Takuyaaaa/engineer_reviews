@@ -1,7 +1,5 @@
 package com.engineer_reviews.models.book
 
-import kotlin.properties.Delegates
-
 class Book(
         var title: String,
         var price: Int,
