@@ -37,7 +37,7 @@ class BookRepositoryTest {
         // --------------------------------------
 
         // find the book created by its id
-        val targetBook = BookRepository.find(book.id)
+        val targetBook = book.id?.let { BookRepository.find(it) }
 
         // --------------------------------------
 
@@ -53,16 +53,18 @@ class BookRepositoryTest {
         // --------------------------------------
 
         // update entity
-        val updatedBook = BookRepository.update(book.id, entity2())
+        val updatedBook = book.id?.let { BookRepository.update(it, entity2()) }
 
         // --------------------------------------
 
         // operation should be done as expected
-        assertEquals(entity2().title, updatedBook.title)
-        assertEquals(entity2().price, updatedBook.price)
-        assertEquals(entity2().category, updatedBook.category)
-        assertEquals(entity2().reviewScore, updatedBook.reviewScore)
-        assertEquals(entity2().url, updatedBook.url)
+        if (updatedBook != null) {
+            assertEquals(entity2().title, updatedBook.title)
+            assertEquals(entity2().price, updatedBook.price)
+            assertEquals(entity2().category, updatedBook.category)
+            assertEquals(entity2().reviewScore, updatedBook.reviewScore)
+            assertEquals(entity2().url, updatedBook.url)
+        }
     }
 
     @Test
@@ -73,13 +75,13 @@ class BookRepositoryTest {
         // --------------------------------------
 
         // delete entity
-        BookRepository.delete(book.id)
+        book.id?.let { BookRepository.delete(it) }
 
         // --------------------------------------
 
         // operation should be done as expected
         assertFails {
-            BookRepository.find(book.id)
+            book.id?.let { BookRepository.find(it) }
         }
     }
 

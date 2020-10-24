@@ -2,6 +2,7 @@ package com.engineer_reviews.model.book
 
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.model.book.Book
+import com.engineer_reviews.model.book.valu_objects.BookId
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -19,7 +20,7 @@ class BookEloquent(id: EntityID<Int>): IntEntity(id) {
         val book = Book(this.title, this.price, this.category,
                 this.reviewScore, this.url)
 
-        book.id = this.id.value
+        book.id = BookId(this.id.value)
         return book
     }
 }

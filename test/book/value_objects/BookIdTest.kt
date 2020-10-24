@@ -1,5 +1,6 @@
-package book
+package book.value_objects
 
+import book.BookRepositoryTest
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDBForTest
 import com.engineer_reviews.model.book.BookRepository
@@ -9,23 +10,22 @@ import org.junit.Test
 import kotlin.test.BeforeTest
 import kotlin.test.assertEquals
 
-class BookEloquentTest {
-
+class BookIdTest {
     @Test
     fun testToEntity() {
         // save entity
         val book = BookRepository.save(BookRepositoryTest.entity())
-        // prepare eloquent
-        val eloquent = BookRepository.getAll()[0]
+        val bookId = book.id
+
         // --------------------------------------
 
-        // convert eloquent to entity
-        val convertedBook = eloquent.toEntity()
+        // convert id to entity
+        val convertedBook = bookId?.toEntity()
 
         // --------------------------------------
 
         // operation should be done as expected
-        assertEquals(book.id?.value, convertedBook.id?.value)
+        assertEquals(book.id?.value, convertedBook?.id?.value)
     }
 
     // --------------------------------------

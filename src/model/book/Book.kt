@@ -1,5 +1,7 @@
 package com.engineer_reviews.model.book
 
+import com.engineer_reviews.model.book.valu_objects.BookId
+
 class Book(
         var title: String,
         var price: Int,
@@ -7,7 +9,7 @@ class Book(
         var reviewScore: Double,
         var url: String) {
 
-        var id: Int? = null
+        var id: BookId? = null
 
         fun isEqual(other: Book): Boolean {
             // if entity is not saved (i.e not having id) return false
@@ -19,6 +21,6 @@ class Book(
             }
 
             // if both ids are same return true
-            return this.id === other.id
+            return this.id?.value === other.id?.value
         }
 }

@@ -1,6 +1,7 @@
 package com.engineer_reviews.model.book
 
 import com.engineer_reviews.database.dao.Books
+import com.engineer_reviews.model.book.valu_objects.BookId
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.transactions.transaction
 
@@ -16,11 +17,9 @@ class BookRepository {
             return allBooks
         }
 
-        fun find(id: Int?): Book? {
+        fun find(id: BookId): Book? {
             return transaction {
-                id?.let {
-                    BookEloquent.findById(it)?.toEntity() ?: throw Exception("404")
-                }
+                BookEloquent.findById(id.value)?.toEntity() ?: throw Exception("404")
             }
         }
 
@@ -38,11 +37,11 @@ class BookRepository {
             return createdBook
         }
 
-        fun update(id: Int?, newBook: Book): Book {
+        fun update(id: BookId, newBook: Book): Book {
             val targetBook = find(id)
             lateinit var updatedBook: Book
             transaction {
-                updatedBook = BookEloquent.find { Books.id eq targetBook?.id}.single().apply {
+                updatedBook = BookEloquent.find { Books.id eq targetBook?.id?.value }.single().apply {
                     title = newBook.title
                     price = newBook.price
                     category = newBook.category
@@ -53,10 +52,10 @@ class BookRepository {
             return updatedBook
         }
 
-        fun delete(id: Int?): Book? {
+        fun delete(id: BookId): Book? {
             val targetBook = find(id)
             transaction {
-                Books.deleteWhere { Books.id eq targetBook?.id }
+                Books.deleteWhere { Books.id eq targetBook?.id?.value }
             }
             return targetBook
         }

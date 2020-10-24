@@ -2,6 +2,7 @@ package com.engineer_reviews.controller
 
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
+import com.engineer_reviews.model.book.valu_objects.BookId
 
 class BookController {
 
@@ -15,14 +16,14 @@ class BookController {
     }
 
     fun show(id: Int): Book? {
-        return BookRepository.find(id)
+        return BookRepository.find(BookId(id))
     }
 
     fun update(id: Int, book: Book): Book {
-        return BookRepository.update(id, book)
+        return BookRepository.update(BookId(id), book)
     }
 
     fun delete(id: Int): Book? {
-        return BookRepository.delete(id)
+        return BookRepository.delete(BookId(id))
     }
 }

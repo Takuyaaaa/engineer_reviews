@@ -41,11 +41,11 @@ class BookControllerTest {
 
         // --------------------------------------
 
-        handleRequest(HttpMethod.Get, "/book/$bookId").run {
+        handleRequest(HttpMethod.Get, "/book/${bookId?.value}").run {
             // operation should be done as expected
             assertEquals(HttpStatusCode.OK, response.status())
-            assertEquals(book.id.toString(),
-                    ObjectMapper().readTree(response.content).get("id").toString())
+            assertEquals(book.id?.value.toString(),
+                    ObjectMapper().readTree(response.content).get("id").get("value").toString())
         }
     }
 
@@ -58,7 +58,7 @@ class BookControllerTest {
         // --------------------------------------
 
         val putData = ObjectMapper().writeValueAsString(BookRepositoryTest.entity2())
-        handleRequest(HttpMethod.Put, "/book/$bookId") {
+        handleRequest(HttpMethod.Put, "/book/${bookId?.value}") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
             setBody(putData)
         }.run {
@@ -81,11 +81,11 @@ class BookControllerTest {
 
         // --------------------------------------
 
-        handleRequest(HttpMethod.Delete, "/book/$bookId").run {
+        handleRequest(HttpMethod.Delete, "/book/${bookId?.value}").run {
             // operation should be done as expected
             assertEquals(HttpStatusCode.OK, response.status())
-            assertEquals(book.id.toString(),
-                    ObjectMapper().readTree(response.content).get("id").toString())
+            assertEquals(book.id?.value.toString(),
+                ObjectMapper().readTree(response.content).get("id").get("value").toString())
         }
     }
 }
