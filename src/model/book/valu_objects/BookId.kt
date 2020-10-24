@@ -9,6 +9,10 @@ class BookId(val id: Int) {
     var value by Delegates.notNull<Int>()
 
     init {
+        if (id < 0) {
+            throw Exception("VALIDATE FAILED")
+        }
+
         value = id
     }
 
