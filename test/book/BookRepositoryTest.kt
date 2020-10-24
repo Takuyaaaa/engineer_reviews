@@ -1,9 +1,9 @@
-package com.engineer_reviews.book
+package book
 
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDBForTest
 import com.engineer_reviews.model.book.Book
-import com.engineer_reviews.models.book.BookRepository
+import com.engineer_reviews.model.book.BookRepository
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.Test

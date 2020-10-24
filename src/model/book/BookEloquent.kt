@@ -1,4 +1,4 @@
-package com.engineer_reviews.models.book
+package com.engineer_reviews.model.book
 
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.model.book.Book
@@ -18,7 +18,6 @@ class BookEloquent(id: EntityID<Int>): IntEntity(id) {
     fun toEntity(): Book {
         val book = Book(this.title, this.price, this.category,
                 this.reviewScore, this.url)
-
 
         book.id = this.id.value
         return book

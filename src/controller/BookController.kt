@@ -1,11 +1,12 @@
 package com.engineer_reviews.controller
 
 import com.engineer_reviews.model.book.Book
-import com.engineer_reviews.models.book.BookRepository
+import com.engineer_reviews.model.book.BookRepository
 
 class BookController {
 
     fun index(): List<Book> {
+        // todo: "toEntity" should be handled by repository
         return BookRepository.getAll().map { it.toEntity() }
     }
 

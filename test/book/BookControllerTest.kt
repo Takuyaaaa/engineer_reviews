@@ -1,7 +1,6 @@
 package book
 
-import com.engineer_reviews.book.BookRepositoryTest
-import com.engineer_reviews.models.book.BookRepository
+import com.engineer_reviews.model.book.BookRepository
 import com.engineer_reviews.module
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.application.*
