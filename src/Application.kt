@@ -2,7 +2,7 @@ package com.engineer_reviews
 
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
-import com.engineer_reviews.models.book.Book
+import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.models.book.BookRepository
 import com.engineer_reviews.route.roots
 import com.fasterxml.jackson.databind.SerializationFeature

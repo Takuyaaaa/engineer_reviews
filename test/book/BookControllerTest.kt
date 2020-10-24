@@ -1,6 +1,7 @@
 package book
 
 import com.engineer_reviews.book.BookRepositoryTest
+import com.engineer_reviews.models.book.BookRepository
 import com.engineer_reviews.module
 import com.fasterxml.jackson.databind.ObjectMapper
 import io.ktor.application.*
@@ -30,6 +31,62 @@ class BookControllerTest {
             // operation should be done as expected
             assertEquals(HttpStatusCode.OK, response.status())
             assertNotNull(response.content)
+        }
+    }
+
+    @Test
+    fun testShow(): Unit = withTestApplication(Application::module) {
+        // save entity
+        val book = BookRepository.save(BookRepositoryTest.entity())
+        val bookId = book.id
+
+        // --------------------------------------
+
+        handleRequest(HttpMethod.Get, "/book/$bookId").run {
+            // operation should be done as expected
+            assertEquals(HttpStatusCode.OK, response.status())
+            assertEquals(book.id.toString(),
+                    ObjectMapper().readTree(response.content).get("id").toString())
+        }
+    }
+
+    @Test
+    fun testUpdate(): Unit = withTestApplication(Application::module) {
+        // save entity
+        val book = BookRepository.save(BookRepositoryTest.entity())
+        val bookId = book.id
+
+        // --------------------------------------
+
+        val putData = ObjectMapper().writeValueAsString(BookRepositoryTest.entity2())
+        handleRequest(HttpMethod.Put, "/book/$bookId") {
+            addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
+            setBody(putData)
+        }.run {
+            // operation should be done as expected
+            assertEquals(HttpStatusCode.OK, response.status())
+            val response = ObjectMapper().readTree(response.content)
+            assertEquals(BookRepositoryTest.entity2().title, response.get("title").textValue())
+            assertEquals(BookRepositoryTest.entity2().price.toString(), response.get("price").toString())
+            assertEquals(BookRepositoryTest.entity2().category.toString(), response.get("category").toString())
+            assertEquals(BookRepositoryTest.entity2().reviewScore.toString(), response.get("reviewScore").toString())
+            assertEquals(BookRepositoryTest.entity2().url, response.get("url").textValue())
+        }
+    }
+
+    @Test
+    fun testDelete(): Unit = withTestApplication(Application::module) {
+        // save entity
+        val book = BookRepository.save(BookRepositoryTest.entity())
+        val bookId = book.id
+
+        // --------------------------------------
+
+        handleRequest(HttpMethod.Delete, "/book/$bookId").run {
+            // operation should be done as expected
+            assertEquals(HttpStatusCode.OK, response.status())
+            assertEquals(book.id.toString(),
+                    ObjectMapper().readTree(response.content).get("id").toString())
         }
     }
 }

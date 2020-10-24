@@ -1,11 +1,9 @@
 package com.engineer_reviews.models.book
 
 import com.engineer_reviews.database.dao.Books
-import org.jetbrains.exposed.sql.SqlExpressionBuilder.eq
+import com.engineer_reviews.model.book.Book
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.transactions.transaction
-import org.jetbrains.exposed.sql.update
-import java.lang.Exception
 
 class BookRepository {
 

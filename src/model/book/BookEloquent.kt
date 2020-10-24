@@ -1,6 +1,7 @@
 package com.engineer_reviews.models.book
 
 import com.engineer_reviews.database.dao.Books
+import com.engineer_reviews.model.book.Book
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass

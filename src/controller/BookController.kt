@@ -1,6 +1,6 @@
 package com.engineer_reviews.controller
 
-import com.engineer_reviews.models.book.Book
+import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.models.book.BookRepository
 
 class BookController {

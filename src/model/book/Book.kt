@@ -1,4 +1,4 @@
-package com.engineer_reviews.models.book
+package com.engineer_reviews.model.book
 
 class Book(
         var title: String,
