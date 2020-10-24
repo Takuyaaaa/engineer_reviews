@@ -66,7 +66,7 @@ class BookControllerTest {
             assertEquals(HttpStatusCode.OK, response.status())
             val response = ObjectMapper().readTree(response.content)
             assertEquals(BookRepositoryTest.entity2().title.value, response.get("title").get("value").textValue())
-            assertEquals(BookRepositoryTest.entity2().price.toString(), response.get("price").toString())
+            assertEquals(BookRepositoryTest.entity2().price.value.toString(), response.get("price").get("value").toString())
             assertEquals(BookRepositoryTest.entity2().category.toString(), response.get("category").toString())
             assertEquals(BookRepositoryTest.entity2().reviewScore.toString(), response.get("reviewScore").toString())
             assertEquals(BookRepositoryTest.entity2().url, response.get("url").textValue())

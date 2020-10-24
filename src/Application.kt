@@ -4,6 +4,7 @@ import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
+import com.engineer_reviews.model.book.valu_objects.BookPrice
 import com.engineer_reviews.model.book.valu_objects.BookTitle
 import com.engineer_reviews.route.roots
 import com.fasterxml.jackson.databind.SerializationFeature
@@ -45,8 +46,8 @@ fun Application.module(testing: Boolean = false) {
         drop(Books)
         SchemaUtils.create(Books)
 
-        BookRepository.save(Book(BookTitle("Test Title"), 2000, 1, 5.5, "https://this/is/sample"))
-        BookRepository.save(Book(BookTitle("Test Title2"), 3000, 2, 8.5, "https://this/is/sample/2"))
+        BookRepository.save(Book(BookTitle("Test Title"), BookPrice(2000), 1, 5.5, "https://this/is/sample"))
+        BookRepository.save(Book(BookTitle("Test Title2"), BookPrice(3000), 2, 8.5, "https://this/is/sample/2"))
     }
 
     routing {
