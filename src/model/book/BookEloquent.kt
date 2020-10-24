@@ -3,6 +3,7 @@ package com.engineer_reviews.model.book
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.valu_objects.BookId
+import com.engineer_reviews.model.book.valu_objects.BookTitle
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -17,7 +18,8 @@ class BookEloquent(id: EntityID<Int>): IntEntity(id) {
     var url: String by Books.url
 
     fun toEntity(): Book {
-        val book = Book(this.title, this.price, this.category,
+        val book = Book(
+            BookTitle(this.title), this.price, this.category,
                 this.reviewScore, this.url)
 
         book.id = BookId(this.id.value)

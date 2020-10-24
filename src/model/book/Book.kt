@@ -1,13 +1,14 @@
 package com.engineer_reviews.model.book
 
 import com.engineer_reviews.model.book.valu_objects.BookId
+import com.engineer_reviews.model.book.valu_objects.BookTitle
 
 class Book(
-        var title: String,
-        var price: Int,
-        var category: Int,
-        var reviewScore: Double,
-        var url: String) {
+    var title: BookTitle,
+    var price: Int,
+    var category: Int,
+    var reviewScore: Double,
+    var url: String) {
 
         var id: BookId? = null
 

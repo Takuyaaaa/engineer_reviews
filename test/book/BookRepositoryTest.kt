@@ -4,6 +4,7 @@ import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDBForTest
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
+import com.engineer_reviews.model.book.valu_objects.BookTitle
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.Test
@@ -59,7 +60,7 @@ class BookRepositoryTest {
 
         // operation should be done as expected
         if (updatedBook != null) {
-            assertEquals(entity2().title, updatedBook.title)
+            assertEquals(entity2().title.value, updatedBook.title.value)
             assertEquals(entity2().price, updatedBook.price)
             assertEquals(entity2().category, updatedBook.category)
             assertEquals(entity2().reviewScore, updatedBook.reviewScore)
@@ -90,7 +91,7 @@ class BookRepositoryTest {
     companion object {
         fun entity(): Book {
             return Book(
-                "test",
+                BookTitle("test"),
                 1000,
                 1,
                 5.5,
@@ -100,7 +101,7 @@ class BookRepositoryTest {
 
         fun entity2(): Book {
             return Book(
-                "test2",
+                BookTitle("test2"),
                 2000,
                 2,
                 10.5,

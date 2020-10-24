@@ -27,7 +27,7 @@ class BookRepository {
             lateinit var createdBook: Book
             transaction {
                 createdBook = BookEloquent.new {
-                    title = book.title
+                    title = book.title.value
                     price = book.price
                     category = book.category
                     reviewScore = book.reviewScore
@@ -42,7 +42,7 @@ class BookRepository {
             lateinit var updatedBook: Book
             transaction {
                 updatedBook = BookEloquent.find { Books.id eq targetBook?.id?.value }.single().apply {
-                    title = newBook.title
+                    title = newBook.title.value
                     price = newBook.price
                     category = newBook.category
                     reviewScore = newBook.reviewScore
