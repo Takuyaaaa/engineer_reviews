@@ -1,6 +1,6 @@
 package com.engineer_reviews.route
 
-import com.engineer_reviews.controllers.BookController
+import com.engineer_reviews.controller.BookController
 import com.engineer_reviews.route.service.extractId
 import io.ktor.application.*
 import io.ktor.request.*

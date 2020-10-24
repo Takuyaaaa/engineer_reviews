@@ -1,6 +1,5 @@
 package com.engineer_reviews
 
-import com.engineer_reviews.controllers.BookController
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
 import com.engineer_reviews.models.book.Book
@@ -11,13 +10,10 @@ import io.ktor.application.*
 import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.jackson.*
-import io.ktor.request.*
-import io.ktor.response.*
 import io.ktor.routing.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.SchemaUtils.drop
 import org.jetbrains.exposed.sql.transactions.transaction
-import kotlin.properties.Delegates
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 

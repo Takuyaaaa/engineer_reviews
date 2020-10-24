@@ -1,4 +1,4 @@
-package com.engineer_reviews.controllers
+package com.engineer_reviews.controller
 
 import com.engineer_reviews.models.book.Book
 import com.engineer_reviews.models.book.BookRepository
