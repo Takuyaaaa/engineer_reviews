@@ -18,15 +18,17 @@ fun Route.roots() {
             call.respond(bookController.create(call.receive()))
         }
         route("{id}") {
-            get{
-                bookController.show(extractId(call))?.let { it1 -> call.respond(it1)
+            get {
+                bookController.show(extractId(call))?.let { it1 ->
+                    call.respond(it1)
                 }
             }
             put {
                 call.respond(bookController.update(extractId(call), call.receive()))
             }
             delete {
-                bookController.delete(extractId(call))?.let { it1 -> call.respond(it1)
+                bookController.delete(extractId(call))?.let { it1 ->
+                    call.respond(it1)
                 }
             }
         }

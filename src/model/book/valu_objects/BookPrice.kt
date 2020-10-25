@@ -1,6 +1,5 @@
 package com.engineer_reviews.model.book.valu_objects
 
-import java.lang.Exception
 import kotlin.properties.Delegates
 
 class BookPrice(val price: Int) {

@@ -64,7 +64,7 @@ class BookRepositoryTest {
             assertEquals(entity2().price.value, updatedBook.price.value)
             assertEquals(entity2().category.value, updatedBook.category.value)
             assertEquals(entity2().reviewScore.value, updatedBook.reviewScore.value)
-            assertEquals(entity2().url, updatedBook.url)
+            assertEquals(entity2().url.value, updatedBook.url.value)
         }
     }
 
@@ -95,7 +95,7 @@ class BookRepositoryTest {
                 BookPrice(1000),
                 BookCategory.SERVER_SIDE(),
                 BookReviewScore(5.5),
-                BookUrl("https://this/is/test")
+                BookUrl("https://www.amazon.co.jp/1")
             )
         }
 
@@ -105,7 +105,7 @@ class BookRepositoryTest {
                 BookPrice(2000),
                 BookCategory.FRONT_SIDE(),
                 BookReviewScore(7.0),
-                BookUrl("https://this/is/test/2")
+                BookUrl("https://www.amazon.co.jp/2")
             )
         }
     }

@@ -1,12 +1,6 @@
 package com.engineer_reviews
 
-import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDB
-import com.engineer_reviews.model.book.Book
-import com.engineer_reviews.model.book.BookRepository
-import com.engineer_reviews.model.book.valu_objects.BookCategory
-import com.engineer_reviews.model.book.valu_objects.BookPrice
-import com.engineer_reviews.model.book.valu_objects.BookTitle
 import com.engineer_reviews.route.roots
 import com.fasterxml.jackson.databind.SerializationFeature
 import io.ktor.application.*
@@ -14,9 +8,6 @@ import io.ktor.features.*
 import io.ktor.http.*
 import io.ktor.jackson.*
 import io.ktor.routing.*
-import org.jetbrains.exposed.sql.SchemaUtils
-import org.jetbrains.exposed.sql.SchemaUtils.drop
-import org.jetbrains.exposed.sql.transactions.transaction
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 

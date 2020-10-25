@@ -7,20 +7,21 @@ class Book(
     var price: BookPrice,
     var category: BookCategory,
     var reviewScore: BookReviewScore,
-    var url: BookUrl) {
+    var url: BookUrl,
+) {
 
-        var id: BookId? = null
+    var id: BookId? = null
 
-        fun isEqual(other: Book): Boolean {
-            // if entity is not saved (i.e not having id) return false
-            if (this.id === null) {
-                return false
-            }
-            if (other.id === null) {
-                return false
-            }
-
-            // if both ids are same return true
-            return this.id?.value === other.id?.value
+    fun isEqual(other: Book): Boolean {
+        // if entity is not saved (i.e not having id) return false
+        if (this.id === null) {
+            return false
         }
+        if (other.id === null) {
+            return false
+        }
+
+        // if both ids are same return true
+        return this.id?.value === other.id?.value
+    }
 }
