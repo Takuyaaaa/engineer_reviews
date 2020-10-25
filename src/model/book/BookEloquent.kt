@@ -2,10 +2,7 @@ package com.engineer_reviews.model.book
 
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.model.book.Book
-import com.engineer_reviews.model.book.valu_objects.BookCategory
-import com.engineer_reviews.model.book.valu_objects.BookId
-import com.engineer_reviews.model.book.valu_objects.BookPrice
-import com.engineer_reviews.model.book.valu_objects.BookTitle
+import com.engineer_reviews.model.book.valu_objects.*
 import org.jetbrains.exposed.dao.EntityID
 import org.jetbrains.exposed.dao.IntEntity
 import org.jetbrains.exposed.dao.IntEntityClass
@@ -24,7 +21,7 @@ class BookEloquent(id: EntityID<Int>): IntEntity(id) {
             BookTitle(this.title),
             BookPrice(this.price),
             BookCategory(this.category),
-                this.reviewScore, this.url)
+            BookReviewScore(this.reviewScore), this.url)
 
         book.id = BookId(this.id.value)
         return book

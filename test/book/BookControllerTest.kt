@@ -68,7 +68,7 @@ class BookControllerTest {
             assertEquals(BookRepositoryTest.entity2().title.value, response.get("title").get("value").textValue())
             assertEquals(BookRepositoryTest.entity2().price.value.toString(), response.get("price").get("value").toString())
             assertEquals(BookRepositoryTest.entity2().category.value.toString(), response.get("category").get("value").toString())
-            assertEquals(BookRepositoryTest.entity2().reviewScore.toString(), response.get("reviewScore").toString())
+            assertEquals(BookRepositoryTest.entity2().reviewScore.value.toString(), response.get("reviewScore").get("value").toString())
             assertEquals(BookRepositoryTest.entity2().url, response.get("url").textValue())
         }
     }

@@ -6,6 +6,7 @@ import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
 import com.engineer_reviews.model.book.valu_objects.BookCategory
 import com.engineer_reviews.model.book.valu_objects.BookPrice
+import com.engineer_reviews.model.book.valu_objects.BookReviewScore
 import com.engineer_reviews.model.book.valu_objects.BookTitle
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -65,7 +66,7 @@ class BookRepositoryTest {
             assertEquals(entity2().title.value, updatedBook.title.value)
             assertEquals(entity2().price.value, updatedBook.price.value)
             assertEquals(entity2().category.value, updatedBook.category.value)
-            assertEquals(entity2().reviewScore, updatedBook.reviewScore)
+            assertEquals(entity2().reviewScore.value, updatedBook.reviewScore.value)
             assertEquals(entity2().url, updatedBook.url)
         }
     }
@@ -96,7 +97,7 @@ class BookRepositoryTest {
                 BookTitle("test"),
                 BookPrice(1000),
                 BookCategory.SERVER_SIDE(),
-                5.5,
+                BookReviewScore(5.5),
                 "https://this/is/test"
             )
         }
@@ -106,7 +107,7 @@ class BookRepositoryTest {
                 BookTitle("test2"),
                 BookPrice(2000),
                 BookCategory.FRONT_SIDE(),
-                10.5,
+                BookReviewScore(7.0),
                 "https://this/is/test/2"
             )
         }
