@@ -42,15 +42,6 @@ fun Application.module(testing: Boolean = false) {
 
     InitDB()
 
-    // create Books Table
-    transaction {
-        drop(Books)
-        SchemaUtils.create(Books)
-
-        BookRepository.save(Book(BookTitle("Test Title"), BookPrice(2000), BookCategory.SERVER_SIDE(), 5.5, "https://this/is/sample"))
-        BookRepository.save(Book(BookTitle("Test Title2"), BookPrice(3000), BookCategory.FRONT_SIDE(), 8.5, "https://this/is/sample/2"))
-    }
-
     routing {
         roots()
     }
