@@ -29,7 +29,7 @@ class BookRepository {
                 createdBook = BookEloquent.new {
                     title = book.title.value
                     price = book.price.value
-                    category = book.category
+                    category = book.category.value
                     reviewScore = book.reviewScore
                     url = book.url
                 }.toEntity()
@@ -44,7 +44,7 @@ class BookRepository {
                 updatedBook = BookEloquent.find { Books.id eq targetBook?.id?.value }.single().apply {
                     title = newBook.title.value
                     price = newBook.price.value
-                    category = newBook.category
+                    category = newBook.category.value
                     reviewScore = newBook.reviewScore
                     url = newBook.url
                 }.toEntity()

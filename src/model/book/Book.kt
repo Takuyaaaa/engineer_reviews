@@ -1,5 +1,6 @@
 package com.engineer_reviews.model.book
 
+import com.engineer_reviews.model.book.valu_objects.BookCategory
 import com.engineer_reviews.model.book.valu_objects.BookId
 import com.engineer_reviews.model.book.valu_objects.BookPrice
 import com.engineer_reviews.model.book.valu_objects.BookTitle
@@ -7,7 +8,7 @@ import com.engineer_reviews.model.book.valu_objects.BookTitle
 class Book(
     var title: BookTitle,
     var price: BookPrice,
-    var category: Int,
+    var category: BookCategory,
     var reviewScore: Double,
     var url: String) {
 

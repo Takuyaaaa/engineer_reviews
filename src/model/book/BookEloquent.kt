@@ -2,6 +2,7 @@ package com.engineer_reviews.model.book
 
 import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.model.book.Book
+import com.engineer_reviews.model.book.valu_objects.BookCategory
 import com.engineer_reviews.model.book.valu_objects.BookId
 import com.engineer_reviews.model.book.valu_objects.BookPrice
 import com.engineer_reviews.model.book.valu_objects.BookTitle
@@ -21,7 +22,8 @@ class BookEloquent(id: EntityID<Int>): IntEntity(id) {
     fun toEntity(): Book {
         val book = Book(
             BookTitle(this.title),
-            BookPrice(this.price), this.category,
+            BookPrice(this.price),
+            BookCategory(this.category),
                 this.reviewScore, this.url)
 
         book.id = BookId(this.id.value)
