@@ -7,7 +7,7 @@ class Book(
     var price: BookPrice,
     var category: BookCategory,
     var reviewScore: BookReviewScore,
-    var url: String) {
+    var url: BookUrl) {
 
         var id: BookId? = null
 

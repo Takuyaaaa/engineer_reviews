@@ -4,10 +4,7 @@ import com.engineer_reviews.database.dao.Books
 import com.engineer_reviews.database.service.InitDBForTest
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
-import com.engineer_reviews.model.book.valu_objects.BookCategory
-import com.engineer_reviews.model.book.valu_objects.BookPrice
-import com.engineer_reviews.model.book.valu_objects.BookReviewScore
-import com.engineer_reviews.model.book.valu_objects.BookTitle
+import com.engineer_reviews.model.book.valu_objects.*
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.junit.Test
@@ -98,7 +95,7 @@ class BookRepositoryTest {
                 BookPrice(1000),
                 BookCategory.SERVER_SIDE(),
                 BookReviewScore(5.5),
-                "https://this/is/test"
+                BookUrl("https://this/is/test")
             )
         }
 
@@ -108,7 +105,7 @@ class BookRepositoryTest {
                 BookPrice(2000),
                 BookCategory.FRONT_SIDE(),
                 BookReviewScore(7.0),
-                "https://this/is/test/2"
+                BookUrl("https://this/is/test/2")
             )
         }
     }

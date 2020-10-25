@@ -31,7 +31,7 @@ class BookRepository {
                     price = book.price.value
                     category = book.category.value
                     reviewScore = book.reviewScore.value
-                    url = book.url
+                    url = book.url.value
                 }.toEntity()
             }
             return createdBook
@@ -46,7 +46,7 @@ class BookRepository {
                     price = newBook.price.value
                     category = newBook.category.value
                     reviewScore = newBook.reviewScore.value
-                    url = newBook.url
+                    url = newBook.url.value
                 }.toEntity()
             }
             return updatedBook

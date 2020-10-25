@@ -21,7 +21,8 @@ class BookEloquent(id: EntityID<Int>): IntEntity(id) {
             BookTitle(this.title),
             BookPrice(this.price),
             BookCategory(this.category),
-            BookReviewScore(this.reviewScore), this.url)
+            BookReviewScore(this.reviewScore),
+            BookUrl(this.url))
 
         book.id = BookId(this.id.value)
         return book
