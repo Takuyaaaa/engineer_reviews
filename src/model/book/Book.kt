@@ -10,6 +10,26 @@ class Book(
     var url: BookUrl,
 ) {
 
+    companion object {
+        data class PostData(
+            val title: String,
+            var price: Int,
+            var category: Int,
+            var reviewScore: Double,
+            var url: String,
+        )
+
+        fun new(data: PostData): Book {
+            return Book(
+                BookTitle(data.title),
+                BookPrice(data.price),
+                BookCategory(data.category),
+                BookReviewScore(data.reviewScore),
+                BookUrl(data.url)
+            )
+        }
+    }
+
     var id: BookId? = null
 
     fun isEqual(other: Book): Boolean {

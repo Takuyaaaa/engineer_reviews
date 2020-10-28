@@ -22,7 +22,9 @@ class BookControllerTest {
 
     @Test
     fun testCreate(): Unit = withTestApplication(Application::module) {
-        val postData = ObjectMapper().writeValueAsString(BookRepositoryTest.entity())
+        val postData = ObjectMapper().writeValueAsString(
+            mapOf("bookTitle" to "Updated Book", "bookPrice" to 3000, "bookCategory" to 10, "bookReviewScore" to 2, "bookUrl" to "https://www.amazon.co.jp"))
+
         handleRequest(HttpMethod.Post, "/book") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
             setBody(postData)
@@ -44,8 +46,8 @@ class BookControllerTest {
         handleRequest(HttpMethod.Get, "/book/${bookId?.value}").run {
             // operation should be done as expected
             assertEquals(HttpStatusCode.OK, response.status())
-            assertEquals(book.id?.value.toString(),
-                ObjectMapper().readTree(response.content).get("id").get("value").toString())
+            println(response.content)
+            assertEquals(book.id?.value.toString(), ObjectMapper().readTree(response.content).get("id").get("value").toString())
         }
     }
 
@@ -72,7 +74,7 @@ class BookControllerTest {
                 response.get("category").get("value").toString())
             assertEquals(BookRepositoryTest.entity2().reviewScore.value.toString(),
                 response.get("reviewScore").get("value").toString())
-            assertEquals(BookRepositoryTest.entity2().url.value.toString(),
+            assertEquals(BookRepositoryTest.entity2().url.value,
                 response.get("url").get("value").textValue())
         }
     }

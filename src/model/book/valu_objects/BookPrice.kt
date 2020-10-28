@@ -1,16 +1,12 @@
 package com.engineer_reviews.model.book.valu_objects
 
-import kotlin.properties.Delegates
+import com.fasterxml.jackson.annotation.JsonIgnore
 
-class BookPrice(val price: Int) {
-
-    var value by Delegates.notNull<Int>()
+class BookPrice(val value: Int) {
 
     init {
-        if (price < 0) {
+        if (value < 0) {
             throw Exception("VALIDATE FAILED")
         }
-
-        value = price
     }
 }

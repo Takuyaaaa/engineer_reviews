@@ -11,16 +11,16 @@ class BookController {
         return BookRepository.getAll().map { it.toEntity() }
     }
 
-    fun create(newBook: Book): Book {
-        return BookRepository.save(newBook)
+    fun create(data: Book.Companion.PostData): Book {
+        return BookRepository.save(Book.new(data))
     }
 
     fun show(id: Int): Book? {
         return BookRepository.find(BookId(id))
     }
 
-    fun update(id: Int, book: Book): Book {
-        return BookRepository.update(BookId(id), book)
+    fun update(id: Int, data: Book.Companion.PostData): Book {
+        return BookRepository.update(BookId(id), Book.new(data))
     }
 
     fun delete(id: Int): Book? {

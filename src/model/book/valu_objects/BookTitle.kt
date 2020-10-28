@@ -1,16 +1,10 @@
 package com.engineer_reviews.model.book.valu_objects
 
-import kotlin.properties.Delegates
-
-class BookTitle(val title: String) {
-
-    var value by Delegates.notNull<String>()
+class BookTitle(val value: String) {
 
     init {
-        if (title.length > 255) {
+        if (value.length > 255) {
             throw Exception("VALIDATE FAILED")
         }
-
-        value = title
     }
 }

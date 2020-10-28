@@ -2,18 +2,14 @@ package com.engineer_reviews.model.book.valu_objects
 
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
-import kotlin.properties.Delegates
+import com.fasterxml.jackson.annotation.JsonIgnore
 
-class BookId(val id: Int) {
-
-    var value by Delegates.notNull<Int>()
+class BookId(val value: Int) {
 
     init {
-        if (id < 0) {
+        if (value < 0) {
             throw Exception("VALIDATE FAILED")
         }
-
-        value = id
     }
 
     fun toEntity(): Book {

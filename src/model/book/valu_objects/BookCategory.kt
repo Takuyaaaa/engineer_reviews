@@ -1,17 +1,13 @@
 package com.engineer_reviews.model.book.valu_objects
 
-import kotlin.properties.Delegates
+import com.fasterxml.jackson.annotation.JsonIgnore
 
-class BookCategory(val category: Int) {
-
-    var value by Delegates.notNull<Int>()
+class BookCategory(val value: Int) {
 
     init {
-        if (category < 1 || category > 6) {
+        if (value < 1 || value > 6) {
             throw Exception("VALIDATE FAILED")
         }
-
-        value = category
     }
 
     companion object {

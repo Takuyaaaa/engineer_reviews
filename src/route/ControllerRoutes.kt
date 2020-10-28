@@ -1,11 +1,14 @@
 package com.engineer_reviews.route
 
 import com.engineer_reviews.controller.BookController
+import com.engineer_reviews.model.book.Book
+import com.engineer_reviews.model.book.valu_objects.BookTitle
 import com.engineer_reviews.route.service.extractId
 import io.ktor.application.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
+import io.ktor.util.*
 
 fun Route.roots() {
     val bookController = BookController()
@@ -19,16 +22,16 @@ fun Route.roots() {
         }
         route("{id}") {
             get {
-                bookController.show(extractId(call))?.let { it1 ->
-                    call.respond(it1)
+                bookController.show(extractId(call))?.let { book ->
+                    call.respond(book)
                 }
             }
             put {
                 call.respond(bookController.update(extractId(call), call.receive()))
             }
             delete {
-                bookController.delete(extractId(call))?.let { it1 ->
-                    call.respond(it1)
+                bookController.delete(extractId(call))?.let { book ->
+                    call.respond(book)
                 }
             }
         }

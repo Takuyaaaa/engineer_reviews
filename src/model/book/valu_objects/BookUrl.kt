@@ -1,23 +1,18 @@
 package com.engineer_reviews.model.book.valu_objects
 
-import kotlin.properties.Delegates
+import com.fasterxml.jackson.annotation.JsonIgnore
 
-class BookUrl(val url: String) {
-
-    var value by Delegates.notNull<String>()
+class BookUrl(val value: String) {
 
     init {
-        if (url.length > 510) {
+        if (value.length > 510) {
             throw Exception("VALIDATE FAILED")
         }
 
-        println(url)
         if (!"http(s)?:\\/\\/([\\w-]+\\.)+[\\w-]+(\\/[\\w- .\\/?%&=]*)?"
-                .toRegex().containsMatchIn(url)
+                .toRegex().containsMatchIn(value)
         ) {
             throw Exception("VALIDATE FAILED")
         }
-
-        value = url
     }
 }
