@@ -17,7 +17,7 @@ class BookRepositoryTest {
     @Test
     fun testGetAllAndSave() {
         // save entity
-        BookRepository.save(entity())
+        BookRepository.save(BookTest.entity())
 
         // --------------------------------------
 
@@ -33,7 +33,7 @@ class BookRepositoryTest {
     @Test
     fun testFind() {
         // save entity
-        val book = BookRepository.save(entity())
+        val book = BookRepository.save(BookTest.entity())
 
         // --------------------------------------
 
@@ -49,29 +49,30 @@ class BookRepositoryTest {
     @Test
     fun testUpdate() {
         // save entity
-        val book = BookRepository.save(entity())
+        val book = BookRepository.save(BookTest.entity())
 
         // --------------------------------------
 
         // update entity
-        val updatedBook = book.id?.let { BookRepository.update(it, entity2()) }
+        val updatedBook = book.id?.let { BookRepository.update(it, BookTest.entity2()) }
 
         // --------------------------------------
 
         // operation should be done as expected
         if (updatedBook != null) {
-            assertEquals(entity2().title.value, updatedBook.title.value)
-            assertEquals(entity2().price.value, updatedBook.price.value)
-            assertEquals(entity2().category.value, updatedBook.category.value)
-            assertEquals(entity2().reviewScore.value, updatedBook.reviewScore.value)
-            assertEquals(entity2().url.value, updatedBook.url.value)
+            val book2 = BookTest.entity2()
+            assertEquals(book2.title.value, updatedBook.title.value)
+            assertEquals(book2.price.value, updatedBook.price.value)
+            assertEquals(book2.category.value, updatedBook.category.value)
+            assertEquals(book2.reviewScore.value, updatedBook.reviewScore.value)
+            assertEquals(book2.url.value, updatedBook.url.value)
         }
     }
 
     @Test
     fun testDelete() {
         // save entity
-        val book = BookRepository.save(entity())
+        val book = BookRepository.save(BookTest.entity())
 
         // --------------------------------------
 
@@ -83,30 +84,6 @@ class BookRepositoryTest {
         // operation should be done as expected
         assertFails {
             book.id?.let { BookRepository.find(it) }
-        }
-    }
-
-    // --------------------------------------
-
-    companion object {
-        fun entity(): Book {
-            return Book(
-                BookTitle("test"),
-                BookPrice(1000),
-                BookCategory.SERVER_SIDE(),
-                BookReviewScore(5.5),
-                BookUrl("https://www.amazon.co.jp/1")
-            )
-        }
-
-        fun entity2(): Book {
-            return Book(
-                BookTitle("test2"),
-                BookPrice(2000),
-                BookCategory.FRONT_SIDE(),
-                BookReviewScore(7.0),
-                BookUrl("https://www.amazon.co.jp/2")
-            )
         }
     }
 

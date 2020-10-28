@@ -1,6 +1,7 @@
 package book.value_objects
 
 import book.BookRepositoryTest
+import book.BookTest
 import com.engineer_reviews.database.service.InitDBForTest
 import com.engineer_reviews.model.book.BookRepository
 import com.engineer_reviews.model.book.valu_objects.BookId
@@ -24,7 +25,7 @@ class BookIdTest {
     @Test
     fun testToEntity() {
         // save entity
-        val book = BookRepository.save(BookRepositoryTest.entity())
+        val book = BookRepository.save(BookTest.entity())
         val bookId = book.id
 
         // --------------------------------------

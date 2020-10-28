@@ -11,7 +11,7 @@ class Book(
 ) {
 
     companion object {
-        data class PostData(
+        data class SentData(
             val title: String,
             var price: Int,
             var category: Int,
@@ -19,7 +19,7 @@ class Book(
             var url: String,
         )
 
-        fun new(data: PostData): Book {
+        fun new(data: SentData): Book {
             return Book(
                 BookTitle(data.title),
                 BookPrice(data.price),

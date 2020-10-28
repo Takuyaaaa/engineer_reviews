@@ -11,7 +11,7 @@ class BookController {
         return BookRepository.getAll().map { it.toEntity() }
     }
 
-    fun create(data: Book.Companion.PostData): Book {
+    fun create(data: Book.Companion.SentData): Book {
         return BookRepository.save(Book.new(data))
     }
 
@@ -19,7 +19,7 @@ class BookController {
         return BookRepository.find(BookId(id))
     }
 
-    fun update(id: Int, data: Book.Companion.PostData): Book {
+    fun update(id: Int, data: Book.Companion.SentData): Book {
         return BookRepository.update(BookId(id), Book.new(data))
     }
 

@@ -11,7 +11,7 @@ class BookEloquentTest {
     @Test
     fun testToEntity() {
         // save entity
-        val book = BookRepository.save(BookRepositoryTest.entity())
+        val book = BookRepository.save(BookTest.entity())
         // prepare eloquent
         val eloquent = BookRepository.getAll()[0]
         // --------------------------------------

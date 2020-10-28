@@ -38,7 +38,7 @@ class BookControllerTest {
     @Test
     fun testShow(): Unit = withTestApplication(Application::module) {
         // save entity
-        val book = BookRepository.save(BookRepositoryTest.entity())
+        val book = BookRepository.save(BookTest.entity())
         val bookId = book.id
 
         // --------------------------------------
@@ -54,7 +54,7 @@ class BookControllerTest {
     @Test
     fun testUpdate(): Unit = withTestApplication(Application::module) {
         // save entity
-        val book = BookRepository.save(BookRepositoryTest.entity())
+        val book = BookRepository.save(BookTest.entity())
         val bookId = book.id
 
         // --------------------------------------
@@ -80,7 +80,7 @@ class BookControllerTest {
     @Test
     fun testDelete(): Unit = withTestApplication(Application::module) {
         // save entity
-        val book = BookRepository.save(BookRepositoryTest.entity())
+        val book = BookRepository.save(BookTest.entity())
         val bookId = book.id
 
         // --------------------------------------
