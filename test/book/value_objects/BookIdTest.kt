@@ -1,6 +1,5 @@
 package book.value_objects
 
-import book.BookRepositoryTest
 import book.BookTest
 import com.engineer_reviews.database.service.InitDBForTest
 import com.engineer_reviews.model.book.BookRepository

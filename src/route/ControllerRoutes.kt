@@ -1,14 +1,11 @@
 package com.engineer_reviews.route
 
 import com.engineer_reviews.controller.BookController
-import com.engineer_reviews.model.book.Book
-import com.engineer_reviews.model.book.valu_objects.BookTitle
 import com.engineer_reviews.route.service.extractId
 import io.ktor.application.*
 import io.ktor.request.*
 import io.ktor.response.*
 import io.ktor.routing.*
-import io.ktor.util.*
 
 fun Route.roots() {
     val bookController = BookController()

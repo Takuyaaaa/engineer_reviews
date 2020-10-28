@@ -1,7 +1,5 @@
 package com.engineer_reviews.model.book.valu_objects
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-
 class BookUrl(val value: String) {
 
     init {

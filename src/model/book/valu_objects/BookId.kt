@@ -2,7 +2,6 @@ package com.engineer_reviews.model.book.valu_objects
 
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
-import com.fasterxml.jackson.annotation.JsonIgnore
 
 class BookId(val value: Int) {
 
