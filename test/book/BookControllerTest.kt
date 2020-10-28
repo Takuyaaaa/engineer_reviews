@@ -23,7 +23,7 @@ class BookControllerTest {
     @Test
     fun testCreate(): Unit = withTestApplication(Application::module) {
         val postData = ObjectMapper().writeValueAsString(
-            mapOf("bookTitle" to "Updated Book", "bookPrice" to 3000, "bookCategory" to 10, "bookReviewScore" to 2, "bookUrl" to "https://www.amazon.co.jp"))
+            mapOf("title" to "New Book", "price" to 3000, "category" to 1, "reviewScore" to 2.0, "url" to "https://www.amazon.co.jp"))
 
         handleRequest(HttpMethod.Post, "/book") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
@@ -59,7 +59,9 @@ class BookControllerTest {
 
         // --------------------------------------
 
-        val putData = ObjectMapper().writeValueAsString(BookRepositoryTest.entity2())
+        val putData = ObjectMapper().writeValueAsString(
+            mapOf("title" to "Updated Book", "price" to 3000, "category" to 1, "reviewScore" to 2.0, "url" to "https://www.amazon.co.jp"))
+
         handleRequest(HttpMethod.Put, "/book/${bookId?.value}") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
             setBody(putData)
@@ -67,15 +69,11 @@ class BookControllerTest {
             // operation should be done as expected
             assertEquals(HttpStatusCode.OK, response.status())
             val response = ObjectMapper().readTree(response.content)
-            assertEquals(BookRepositoryTest.entity2().title.value, response.get("title").get("value").textValue())
-            assertEquals(BookRepositoryTest.entity2().price.value.toString(),
-                response.get("price").get("value").toString())
-            assertEquals(BookRepositoryTest.entity2().category.value.toString(),
-                response.get("category").get("value").toString())
-            assertEquals(BookRepositoryTest.entity2().reviewScore.value.toString(),
-                response.get("reviewScore").get("value").toString())
-            assertEquals(BookRepositoryTest.entity2().url.value,
-                response.get("url").get("value").textValue())
+            assertEquals("Updated Book", response.get("title").get("value").textValue())
+            assertEquals("3000", response.get("price").get("value").toString())
+            assertEquals("1", response.get("category").get("value").toString())
+            assertEquals("2.0", response.get("reviewScore").get("value").toString())
+            assertEquals("https://www.amazon.co.jp", response.get("url").get("value").textValue())
         }
     }
 
