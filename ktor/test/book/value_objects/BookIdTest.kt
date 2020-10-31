@@ -3,7 +3,7 @@ package book.value_objects
 import book.BookTest
 import com.engineer_reviews.database.service.InitDBForTest
 import com.engineer_reviews.model.book.BookRepository
-import com.engineer_reviews.model.book.valu_objects.BookId
+import com.engineer_reviews.model.book.value_objects.BookId
 import org.junit.Test
 import kotlin.test.BeforeTest
 import kotlin.test.assertEquals

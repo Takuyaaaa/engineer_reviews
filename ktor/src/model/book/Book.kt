@@ -1,6 +1,8 @@
 package com.engineer_reviews.model.book
 
-import com.engineer_reviews.model.book.valu_objects.*
+import com.engineer_reviews.model.book.value_objects.BookTitle
+import com.engineer_reviews.model.book.value_objects.*
+
 
 class Book(
     var title: BookTitle,

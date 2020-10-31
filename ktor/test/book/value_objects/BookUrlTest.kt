@@ -1,6 +1,6 @@
 package book.value_objects
 
-import com.engineer_reviews.model.book.valu_objects.BookUrl
+import com.engineer_reviews.model.book.value_objects.BookUrl
 import org.junit.Test
 import kotlin.test.assertFails
 

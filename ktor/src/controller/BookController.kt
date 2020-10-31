@@ -2,7 +2,7 @@ package com.engineer_reviews.controller
 
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
-import com.engineer_reviews.model.book.valu_objects.BookId
+import com.engineer_reviews.model.book.value_objects.BookId
 
 class BookController {
 

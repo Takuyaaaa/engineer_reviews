@@ -1,7 +1,7 @@
 package com.engineer_reviews.model.book
 
 import com.engineer_reviews.database.dao.Books
-import com.engineer_reviews.model.book.valu_objects.BookId
+import com.engineer_reviews.model.book.value_objects.BookId
 import org.jetbrains.exposed.sql.deleteWhere
 import org.jetbrains.exposed.sql.transactions.transaction
 
