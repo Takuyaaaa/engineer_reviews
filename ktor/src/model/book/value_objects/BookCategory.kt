@@ -1,4 +1,4 @@
-package com.engineer_reviews.model.book.valu_objects
+package com.engineer_reviews.model.book.value_objects
 
 class BookCategory(val value: Int) {
 

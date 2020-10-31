@@ -1,4 +1,4 @@
-package com.engineer_reviews.model.book.valu_objects
+package com.engineer_reviews.model.book.value_objects
 
 import com.engineer_reviews.model.book.Book
 import com.engineer_reviews.model.book.BookRepository
