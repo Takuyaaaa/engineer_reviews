@@ -1,11 +1,11 @@
-import {Component, OnInit} from "@angular/core";
-import {Book} from "./model/book";
-import {BookApiService} from "./service/book_api.service";
+import {Component, OnInit} from '@angular/core';
+import {Book} from './model/book';
+import {BookApiService} from './service/book_api.service';
 
 @Component({
   templateUrl: './book_list.component.html'
 })
-export class BookListComponent implements OnInit{
+export class BookListComponent implements OnInit {
   books: Book[];
 
   constructor(private api: BookApiService) {
@@ -14,6 +14,7 @@ export class BookListComponent implements OnInit{
   ngOnInit() {
     this.api.index()
       .subscribe((response) => {
+        console.log(response);
         this.books = response;
       });
   }
