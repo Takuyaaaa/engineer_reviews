@@ -1,6 +1,5 @@
 package com.engineer_reviews.model.book
 
-import com.engineer_reviews.model.book.value_objects.BookTitle
 import com.engineer_reviews.model.book.value_objects.*
 
 
