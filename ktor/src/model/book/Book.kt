@@ -11,6 +11,9 @@ class Book(
     var url: BookUrl,
 ) {
 
+    // TODO: add author field
+    // TODO: add author field
+    // TODO: fetching data from amazon directly by api or crawling
     companion object {
         data class SentData(
             val title: String,
