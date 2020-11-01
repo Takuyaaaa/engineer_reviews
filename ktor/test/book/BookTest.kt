@@ -30,7 +30,8 @@ class BookTest {
                 BookPrice(1000),
                 BookCategory.SERVER_SIDE(),
                 BookReviewScore(5.5),
-                BookUrl("https://www.amazon.co.jp/1")
+                BookUrl("https://www.amazon.co.jp/1"),
+                BookImagePath("this/is/test/path")
             )
         }
 
@@ -40,7 +41,8 @@ class BookTest {
                 BookPrice(2000),
                 BookCategory.FRONT_SIDE(),
                 BookReviewScore(7.0),
-                BookUrl("https://www.amazon.co.jp/2")
+                BookUrl("https://www.amazon.co.jp/2"),
+                BookImagePath("this/is/test/path/2")
             )
         }
 
@@ -50,7 +52,8 @@ class BookTest {
                 1000,
                 2,
                 3.0,
-                "https://www.amazon.co.jp/sent"
+                "https://www.amazon.co.jp/sent",
+                "this/is/test/path"
             )
         }
     }

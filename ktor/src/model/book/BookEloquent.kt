@@ -14,6 +14,7 @@ class BookEloquent(id: EntityID<Int>) : IntEntity(id) {
     var category: Int by Books.category
     var reviewScore: Double by Books.reviewScore
     var url: String by Books.url
+    var imagePath: String by Books.imagePath
 
     fun toEntity(): Book {
         val book = Book(
@@ -21,7 +22,8 @@ class BookEloquent(id: EntityID<Int>) : IntEntity(id) {
             BookPrice(this.price),
             BookCategory(this.category),
             BookReviewScore(this.reviewScore),
-            BookUrl(this.url))
+            BookUrl(this.url),
+            BookImagePath(this.imagePath))
 
         book.id = BookId(this.id.value)
         return book

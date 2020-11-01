@@ -8,4 +8,5 @@ object Books : IntIdTable("books") {
     var category = integer("category")
     var reviewScore = double("review_score")
     var url = varchar("url", 510)
+    var imagePath = varchar("image_path", 510)
 }

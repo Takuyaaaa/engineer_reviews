@@ -9,9 +9,9 @@ class Book(
     var category: BookCategory,
     var reviewScore: BookReviewScore,
     var url: BookUrl,
+    var imagePath: BookImagePath
 ) {
 
-    // TODO: add author field
     // TODO: add author field
     // TODO: fetching data from amazon directly by api or crawling
     companion object {
@@ -21,6 +21,7 @@ class Book(
             var category: Int,
             var reviewScore: Double,
             var url: String,
+            var imagePath: String
         )
 
         fun new(data: SentData): Book {
@@ -29,7 +30,8 @@ class Book(
                 BookPrice(data.price),
                 BookCategory(data.category),
                 BookReviewScore(data.reviewScore),
-                BookUrl(data.url)
+                BookUrl(data.url),
+                BookImagePath(data.imagePath)
             )
         }
     }

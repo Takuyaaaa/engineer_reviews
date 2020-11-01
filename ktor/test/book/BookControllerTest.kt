@@ -23,7 +23,7 @@ class BookControllerTest {
     @Test
     fun testCreate(): Unit = withTestApplication(Application::module) {
         val postData = ObjectMapper().writeValueAsString(
-            mapOf("title" to "New Book", "price" to 3000, "category" to 1, "reviewScore" to 2.0, "url" to "https://www.amazon.co.jp"))
+            mapOf("title" to "New Book", "price" to 3000, "category" to 1, "reviewScore" to 2.0, "url" to "https://www.amazon.co.jp", "imagePath" to "this/is/test/path"))
 
         handleRequest(HttpMethod.Post, "/book") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())
@@ -60,7 +60,7 @@ class BookControllerTest {
         // --------------------------------------
 
         val putData = ObjectMapper().writeValueAsString(
-            mapOf("title" to "Updated Book", "price" to 3000, "category" to 1, "reviewScore" to 2.0, "url" to "https://www.amazon.co.jp"))
+            mapOf("title" to "Updated Book", "price" to 3000, "category" to 1, "reviewScore" to 2.0, "url" to "https://www.amazon.co.jp", "imagePath" to "this/is/test/path"))
 
         handleRequest(HttpMethod.Put, "/book/${bookId?.value}") {
             addHeader(HttpHeaders.ContentType, ContentType.Application.Json.toString())

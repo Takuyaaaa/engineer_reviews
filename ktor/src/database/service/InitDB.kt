@@ -25,6 +25,7 @@ fun InitDB() {
             category = 1
             reviewScore = 3.1
             url = "https://amazon.co.jp"
+            imagePath = "/Users/takuya/Desktop/profile-picture-1586228238.jpg"
         }
 
         BookEloquent.new {
@@ -33,6 +34,7 @@ fun InitDB() {
             category = 2
             reviewScore = 4.0
             url = "https://amazon.co.jp"
+            imagePath = "/Users/takuya/Desktop/profile-picture-1586228238.jpg"
         }
     }
 }

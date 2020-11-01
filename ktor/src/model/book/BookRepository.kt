@@ -32,6 +32,7 @@ class BookRepository {
                     category = book.category.value
                     reviewScore = book.reviewScore.value
                     url = book.url.value
+                    imagePath = book.imagePath.value
                 }.toEntity()
             }
             return createdBook
@@ -47,6 +48,7 @@ class BookRepository {
                     category = newBook.category.value
                     reviewScore = newBook.reviewScore.value
                     url = newBook.url.value
+                    imagePath = newBook.imagePath.value
                 }.toEntity()
             }
             return updatedBook
