@@ -25,7 +25,7 @@ fun InitDB() {
             category = 1
             reviewScore = 3.1
             url = "https://amazon.co.jp"
-            imagePath = "/Users/takuya/Desktop/profile-picture-1586228238.jpg"
+            imagePath = "https://www.homepage-tukurikata.com/image/lion.jpg"
         }
 
         BookEloquent.new {
@@ -34,7 +34,15 @@ fun InitDB() {
             category = 2
             reviewScore = 4.0
             url = "https://amazon.co.jp"
-            imagePath = "/Users/takuya/Desktop/profile-picture-1586228238.jpg"
+            imagePath = "https://www.homepage-tukurikata.com/image/lion.jpg"
+        }
+        BookEloquent.new {
+            title = "title3"
+            price = 4000
+            category = 2
+            reviewScore = 4.0
+            url = "https://amazon.co.jp"
+            imagePath = "https://www.homepage-tukurikata.com/image/lion.jpg"
         }
     }
 }

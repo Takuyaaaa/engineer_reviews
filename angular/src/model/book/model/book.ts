@@ -5,4 +5,5 @@ export class Book {
   category: number;
   reviewScore: number;
   url: string;
+  imagePath: string;
 }
