@@ -1,5 +1,6 @@
-<ul style="float: left" *ngFor="let book of books" class="list-group">
-    <li  class="list-group-item">
+<div class="mx-auto">
+  <ul style="float: left" *ngFor="let book of books" class="list-group">
+    <li  class="m-3 list-group-item">
       <img [src]="book.imagePath.value" class="rounded float-left" alt="Responsive image">
       <h4>{{book.title.value}}</h4>
       <p>{{"¥"+book.price.value}}</p>
@@ -7,4 +8,5 @@
       <p>{{"スコア："+book.reviewScore.value}}</p>
       <p>{{book.url.value}}</p>
     </li>
-</ul>
+  </ul>
+</div>
