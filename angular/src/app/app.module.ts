@@ -7,16 +7,27 @@ import {HttpClientModule} from '@angular/common/http';
 import {BookApiService} from '../model/book/service/book_api.service';
 import {RouterModule, Routes} from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {BookInfoComponent} from '../model/book/book_info.component';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'book'},
-  {path: 'book', component: BookListComponent},
+  {path: '', pathMatch: 'full', redirectTo: 'book'},
+  {path: 'book',
+    children: [
+      {path: '', component: BookListComponent},
+      {path: ':id', component: BookInfoComponent,
+        children: [
+          {path: '**', component: BookInfoComponent},
+        ]
+      }
+    ],
+  },
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    BookListComponent
+    BookListComponent,
+    BookInfoComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

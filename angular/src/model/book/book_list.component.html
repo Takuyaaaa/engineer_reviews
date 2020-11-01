@@ -2,7 +2,7 @@
   <ul style="float: left" *ngFor="let book of books" class="list-group">
     <li  class="m-3 list-group-item">
       <img [src]="book.imagePath.value" class="rounded float-left" alt="Responsive image">
-      <h4>{{book.title.value}}</h4>
+      <a [routerLink]="[book.id.value]"><h4>{{book.title.value}}</h4></a>
       <p>{{"¥"+book.price.value}}</p>
       <p>{{"カテゴリ："+book.category.value}}</p>
       <p>{{"スコア："+book.reviewScore.value}}</p>
