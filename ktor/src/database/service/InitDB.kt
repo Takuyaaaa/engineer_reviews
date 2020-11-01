@@ -1,6 +1,7 @@
 package com.engineer_reviews.database.service
 
 import com.engineer_reviews.database.dao.Books
+import com.engineer_reviews.model.book.BookEloquent
 import org.jetbrains.exposed.sql.Database
 import org.jetbrains.exposed.sql.SchemaUtils
 import org.jetbrains.exposed.sql.transactions.transaction
@@ -17,6 +18,22 @@ fun InitDB() {
     transaction {
         SchemaUtils.drop(Books)
         SchemaUtils.create(Books)
+
+        BookEloquent.new {
+            title = "title"
+            price = 3000
+            category = 1
+            reviewScore = 3.1
+            url = "https://amazon.co.jp"
+        }
+
+        BookEloquent.new {
+            title = "title2"
+            price = 4000
+            category = 2
+            reviewScore = 4.0
+            url = "https://amazon.co.jp"
+        }
     }
 }
 

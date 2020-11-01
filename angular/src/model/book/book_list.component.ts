@@ -14,7 +14,6 @@ export class BookListComponent implements OnInit {
   ngOnInit() {
     this.api.index()
       .subscribe((response) => {
-        console.log(response);
         this.books = response;
       });
   }

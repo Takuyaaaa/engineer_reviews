@@ -6,6 +6,7 @@ import {BookListComponent} from '../model/book/book_list.component';
 import {HttpClientModule} from '@angular/common/http';
 import {BookApiService} from '../model/book/service/book_api.service';
 import {RouterModule, Routes} from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'book'},
@@ -21,6 +22,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     HttpClientModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     BookApiService

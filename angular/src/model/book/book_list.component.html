@@ -1,3 +1,10 @@
 <ul *ngFor="let book of books">
-  <li>{{book.title.value}}</li>
+    <li style="list-style: none">
+      <h4>{{book.title.value}}</h4>
+      <p>{{"¥"+book.price.value}}</p>
+      <p>{{book.category.value}}</p>
+      <p>{{book.reviewScore.value}}</p>
+      <p>{{book.url.value}}</p>
+    </li>
 </ul>
+<button type="button" class="btn btn-primary">test</button>
